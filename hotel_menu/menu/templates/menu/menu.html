@@ -1,0 +1,291 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'menu/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="cart-container">
+            <a href="{% url 'view_cart' %}" class="cart-link">
+                Cart (<span class="cart-count">{{ cart_count }}</span>)
+            </a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Categories</h2>
+            <ul>
+                <li><a href="#breakfast">Breakfast</a></li>
+                <li><a href="#tandoor">Tandoor</a></li>
+                <li><a href="#main-course">Main Course</a></li>
+                <li><a href="#mushroom">Mushroom</a></li>
+                <li><a href="#paneer">Paneer</a></li>
+                <li><a href="#snacks">Snacks</a></li>
+                <li><a href="#champ">Champ</a></li>
+                <li><a href="#salad">Salad</a></li>
+                <li><a href="#raita">Raita</a></li>
+                <li><a href="#papad">Papad</a></li>
+                <li><a href="#pulao-rice">Pulao & Rice</a></li>
+                <li><a href="#dessert-drinks">Dessert & Cold Drinks</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>Menu</h1>
+
+            <!-- Repeat for each category -->
+            <h2 id="breakfast">Breakfast</h2>
+            <ul class="menu-item">
+                {% for item in breakfast_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="breakfast" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <!-- Repeat similarly for other categories -->
+
+            <h2 id="tandoor">Tandoor</h2>
+            <ul class="menu-item">
+                {% for item in tandoor_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="tandoor" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="main-course">Main Course</h2>
+            <ul class="menu-item">
+                {% for item in main_courses %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="main_course" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="mushroom">Mushroom</h2>
+            <ul class="menu-item">
+                {% for item in mushroom_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="mushroom" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="paneer">Paneer</h2>
+            <ul class="menu-item">
+                {% for item in paneer_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="paneer" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="snacks">Snacks</h2>
+            <ul class="menu-item">
+                {% for item in snacks_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="snacks" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="champ">Champ</h2>
+            <ul class="menu-item">
+                {% for item in champ_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="champ" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="salad">Salad</h2>
+            <ul class="menu-item">
+                {% for item in salad_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="salad" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="raita">Raita</h2>
+            <ul class="menu-item">
+                {% for item in raita_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="raita" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="papad">Papad</h2>
+            <ul class="menu-item">
+                {% for item in papad_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="papad" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="pulao-rice">Pulao & Rice</h2>
+            <ul class="menu-item">
+                {% for item in pulao_rice_items %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="pulao_rice" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2 id="dessert-drinks">Dessert & Cold Drinks</h2>
+            <ul class="menu-item">
+                {% for item in dessert_cold_drinks %}
+                    <li class="menu-item-wrapper">
+                        <div class="menu-item-text">
+                            <p>{{ item.name }}</p>
+                        </div>
+                        <div class="menu-item-image">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="menu-item-details">
+                            <p>${{ item.price }}</p>
+                            <button class="add-to-cart" data-item-type="dessert_cold_drinks" data-item-id="{{ item.id }}">Add to Cart</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        $(document).on('click', '.add-to-cart', function() {
+            var itemType = $(this).data('item-type');
+            var itemId = $(this).data('item-id');
+            $.ajax({
+                url: "{% url 'add_to_cart_ajax' %}",
+                type: 'POST',
+                data: {
+                    'item_type': itemType,
+                    'item_id': itemId,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    $('.cart-count').text(response.cart_count);
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
